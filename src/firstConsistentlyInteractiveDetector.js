@@ -123,7 +123,7 @@ export default class FirstConsistentlyInteractiveDetector {
             this._incompleteRequestStarts, this._networkRequests);
 
     this.rescheduleTimer(
-        Math.max(lastKnownNetwork2Busy + 5000, lastLongTaskEnd));
+        Math.max(lastKnownNetwork2Busy + 1001, lastLongTaskEnd));
   }
 
   /**
@@ -271,7 +271,7 @@ export default class FirstConsistentlyInteractiveDetector {
     });
     this.rescheduleTimer(
         firstConsistentlyInteractiveCore.computeLastKnownNetwork2Busy(
-            this._incompleteRequestStarts, this._networkRequests) + 5000);
+            this._incompleteRequestStarts, this._networkRequests) + 1001);
   }
 
   /**
@@ -288,7 +288,7 @@ export default class FirstConsistentlyInteractiveDetector {
       start: performanceEntry.startTime,
       end: taskEndTime,
     });
-    this.rescheduleTimer(taskEndTime + 5000);
+    this.rescheduleTimer(taskEndTime + 1001);
   }
 
   /**
@@ -302,7 +302,7 @@ export default class FirstConsistentlyInteractiveDetector {
 
     log(`Pushing back FirstConsistentlyInteractive check by 5 seconds.`);
 
-    this.rescheduleTimer(performance.now() + 5000);
+    this.rescheduleTimer(performance.now() + 1001);
   }
 
   /**
@@ -358,7 +358,7 @@ export default class FirstConsistentlyInteractiveDetector {
     if (minValue === null) {
       log(`No usable minimum value yet. Postponing check.`);
 
-      this.rescheduleTimer(Math.max(lastBusy + 5000, currentTime + 1000));
+      this.rescheduleTimer(Math.max(lastBusy + 1001, currentTime + 1000));
     }
 
     log(`Parameter values:`);
